@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closer's Guide — Return to Her | Johanna Cueva</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --jc-black: #000;
+            --jc-white: #FFF;
+            --jc-gray-dark: #333;
+            --jc-gray-mid: #666;
+            --jc-gray-soft: #999;
+            --jc-smoke: #F5F5F5;
+            --jc-accent: #C8A2D8;
+            --jc-accent-light: #EDE0F4;
+            --jc-accent-deep: #9B72B0;
+            --jc-accent-gradient: linear-gradient(135deg, #C8A2D8, #9B72B0);
+            --jc-font: 'Outfit', sans-serif;
+            --jc-radius: 20px;
+            --jc-transition: all 0.3s ease;
+            --jc-green: #2A9D5C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--jc-font);
+            background: var(--jc-white);
+            color: var(--jc-gray-dark);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .guide-header {
+            background: var(--jc-black);
+            color: var(--jc-white);
+            padding: 80px 5% 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guide-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(200, 162, 216, .15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .guide-header .label {
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--jc-accent);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .guide-header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .guide-header h1 em {
+            font-style: italic;
+            color: var(--jc-accent);
+        }
+
+        .guide-header .subtitle {
+            font-size: 1rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .guide-nav {
+            background: var(--jc-smoke);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            padding: 16px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .guide-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-pill {
+            flex-shrink: 0;
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: var(--jc-white);
+            color: var(--jc-gray-mid);
+            cursor: pointer;
+            transition: var(--jc-transition);
+            text-decoration: none;
+        }
+
+        .nav-pill:hover,
+        .nav-pill.active {
+            background: var(--jc-black);
+            color: var(--jc-white);
+            border-color: var(--jc-black);
+        }
+
+        .section {
+            padding: 80px 5%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--jc-accent-deep);
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .section h2 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: var(--jc-black);
+        }
+
+        .section p {
+            margin-bottom: 16px;
+        }
+
+        .checklist-card {
+            background: var(--jc-smoke);
+            border-radius: var(--jc-radius);
+            padding: 40px 32px;
+            margin: 32px 0;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .checklist-card h3 {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--jc-gray-mid);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--jc-accent);
+            flex-shrink: 0;
+            margin-top: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            color: var(--jc-accent-deep);
+        }
+
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .flow-step {
+            background: var(--jc-smoke);
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .flow-step .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--jc-accent-gradient);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .flow-step h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--jc-black);
+            margin-bottom: 6px;
+        }
+
+        .flow-step p {
+            font-size: 0.78rem;
+            color: var(--jc-gray-mid);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .shield-card {
+            background: var(--jc-black);
+            border-radius: var(--jc-radius);
+            padding: 36px 32px;
+            margin: 24px 0;
+            color: var(--jc-white);
+        }
+
+        .shield-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--jc-accent);
+        }
+
+        .shield-card .shield-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--jc-gray-soft);
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        .shield-card .obj-target {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .shield-card p {
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .si {
+            background: rgba(200, 162, 216, 0.12);
+            border-left: 3px solid var(--jc-accent);
+            padding: 16px 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 16px 0;
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+
+        .si em {
+            color: var(--jc-accent);
+            font-style: normal;
+        }
+
+        .rf {
+            background: rgba(42, 157, 92, 0.15);
+            border-left: 3px solid var(--jc-green);
+            padding: 14px 18px;
+            border-radius: 0 12px 12px 0;
+            margin: 12px 0;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .rf strong {
+            color: var(--jc-green);
+        }
+
+        .shield-note {
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 16px;
+        }
+
+        .phase-block {
+            background: var(--jc-white);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: var(--jc-radius);
+            padding: 40px 32px;
+            margin: 24px 0;
+            transition: var(--jc-transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phase-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: transparent;
+            transition: background 0.4s;
+        }
+
+        .phase-block:hover {
+            border-color: rgba(0, 0, 0, 0.12);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+        }
+
+        .phase-block:hover::before {
+            background: var(--jc-accent-gradient);
+        }
+
+        .phase-number {
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--jc-accent-deep);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .phase-block h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--jc-black);
+            margin-bottom: 8px;
+        }
+
+        .phase-duration {
+            font-size: 0.75rem;
+            color: var(--jc-gray-soft);
+            margin-bottom: 16px;
+        }
+
+        .script-box {
+            background: var(--jc-black);
+            color: var(--jc-white);
+            border-radius: 16px;
+            padding: 28px 24px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            font-weight: 300;
+            position: relative;
+        }
+
+        .script-box::before {
+            content: '💬';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            font-size: 1.2rem;
+        }
+
+        .script-box em {
+            color: var(--jc-accent);
+            font-style: normal;
+        }
+
+        .script-box strong {
+            color: var(--jc-white);
+            font-weight: 600;
+        }
+
+        .tip-box {
+            background: var(--jc-accent-light);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 20px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .tip-box .tip-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .tip-box p {
+            font-size: 0.88rem;
+            color: var(--jc-gray-dark);
+            margin: 0;
+        }
+
+        .objection-card {
+            background: var(--jc-smoke);
+            border-radius: var(--jc-radius);
+            padding: 32px 28px;
+            margin: 16px 0;
+            border-left: 3px solid var(--jc-accent);
+        }
+
+        .objection-card .objection-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--jc-gray-soft);
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        .objection-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--jc-black);
+            margin-bottom: 12px;
+        }
+
+        .objection-card .response {
+            font-size: 0.9rem;
+            color: var(--jc-gray-dark);
+            font-style: italic;
+            padding-left: 16px;
+            border-left: 2px solid var(--jc-accent);
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: var(--jc-black);
+            margin: 60px auto;
+        }
+
+        .guide-footer {
+            background: var(--jc-black);
+            color: var(--jc-white);
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .guide-footer h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .guide-footer p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width:768px) {
+            .section {
+                padding: 50px 5%;
+            }
+
+            .phase-block,
+            .checklist-card {
+                padding: 28px 20px;
+            }
+
+            .script-box {
+                padding: 24px 20px;
+                font-size: 0.85rem;
+            }
+
+            .shield-card {
+                padding: 28px 20px;
+            }
+
+            .flow-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media print {
+            .guide-nav {
+                display: none;
+            }
+
+            .phase-block {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+
+            .script-box,
+            .shield-card {
+                background: #f5f5f5;
+                color: #000;
+            }
+
+            .guide-header {
+                background: #f5f5f5;
+                color: #000;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="guide-header">
+        <div class="label">Closer's Guide — Internal Document</div>
+        <h1><em>Return to Her</em></h1>
+        <p class="subtitle">Women's Wellness Mentorship by Johanna Cueva — Closing Call Structure</p>
+    </header>
+
+    <nav class="guide-nav">
+        <a class="nav-pill active" href="#overview">Quick Overview</a>
+        <a class="nav-pill" href="#armor">Armor</a>
+        <a class="nav-pill" href="#checklist">Pre-Call</a>
+        <a class="nav-pill" href="#p1">Phase 1 · Connect</a>
+        <a class="nav-pill" href="#p2">Phase 2 · Discover</a>
+        <a class="nav-pill" href="#p3">Phase 3 · Solution</a>
+        <a class="nav-pill" href="#p4">Phase 4 · Price</a>
+        <a class="nav-pill" href="#p5">Phase 5 · Objections</a>
+        <a class="nav-pill" href="#p6">Phase 6 · Close</a>
+    </nav>
+
+    <!-- ═══════════════ QUICK OVERVIEW ═══════════════ -->
+    <section id="overview" class="section">
+        <div class="section-label">Overview</div>
+        <h2>Full Call Flow</h2>
+        <p>Everything that should happen during the call, in order. Keep this handy as a quick reference.</p>
+        <div class="flow-grid">
+            <div class="flow-step">
+                <div class="step-num">1</div>
+                <h4>Connect</h4>
+                <p>Warm greeting. Set the structure. Ask permission to lead.</p>
+            </div>
+            <div class="flow-step">
+                <div class="step-num">2</div>
+                <h4>Armor Up</h4>
+                <p>Plant seeds that disarm objections BEFORE they come up.</p>
+            </div>
+            <div class="flow-step">
+                <div class="step-num">3</div>
+                <h4>Discover</h4>
+                <p>Listen 80%. Situation, pain, and consequence questions.</p>
+            </div>
+            <div class="flow-step">
+                <div class="step-num">4</div>
+                <h4>Story</h4>
+                <p>Share your story as a mirror. "I was exactly there."</p>
+            </div>
+            <div class="flow-step">
+                <div class="step-num">5</div>
+                <h4>Solution</h4>
+                <p>Present the 3 pillars. Sell the vacation, not the flight.</p>
+            </div>
+            <div class="flow-step">
+                <div class="step-num">6</div>
+                <h4>Price</h4>
+                <p>Say it once. Absolute silence. Don't justify.</p>
+            </div>
+            <div class="flow-step">
+                <div class="step-num">7</div>
+                <h4>Objections</h4>
+                <p>If they come up, resolve them. But the armor already did the heavy lifting.</p>
+            </div>
+            <div class="flow-step">
+                <div class="step-num">8</div>
+                <h4>Close</h4>
+                <p>Concrete options: "This week or next?" Send payment link immediately.</p>
+            </div>
+        </div>
+        <div class="tip-box"><span class="tip-icon">⚡</span>
+            <p><strong>Rule #1:</strong> The call isn't about convincing anyone. It's about helping her see what she
+                already knows: she needs a change. The right questions make her sell herself.</p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════ OBJECTION ARMOR ═══════════════ -->
+    <section id="armor" class="section">
+        <div class="section-label">Key Technique · Minutes 1-10</div>
+        <h2>🛡️ Objection Armor</h2>
+        <p>Objections aren't handled at the end — <strong>they're disarmed at the beginning.</strong> These "seeds" are
+            planted naturally in the first minutes so when you get to the price, the most common excuses have no power.
+        </p>
+
+        <div class="shield-card">
+            <div class="shield-label">Armor 01 · First 3 minutes</div>
+            <h4>🎯 "I need to talk to my husband / partner"</h4>
+            <div class="obj-target">Disarms the objection that someone else makes decisions for her.</div>
+            <p>After the greeting and before discovery questions, naturally insert this question:</p>
+            <div class="si">"Hey, before we start, I want to ask you something. When you decide to do something
+                important for yourself — whether it's a course, a career change, something you know you need — <em>are
+                    you the one who makes that decision? Or do you need to check with someone?</em>"</div>
+            <p>When she says <strong>"yes, I make my own decisions"</strong> (which 95% will say), reinforce:</p>
+            <div class="rf"><strong>↳ Reinforce:</strong> "I love that. Tell me, <em>why is it important to you to be
+                    the one who decides?</em>"</div>
+            <div class="shield-note">💡 <strong>Why it works:</strong> She just publicly committed to being someone who
+                makes her own decisions. If she later says "I need to ask my husband," you can gently remind her:
+                "Earlier you told me you're the one who makes these decisions. What changed?"</div>
+        </div>
+
+        <div class="shield-card">
+            <div class="shield-label">Armor 02 · Discovery phase</div>
+            <h4>💰 "I don't have the money" / "It's too expensive"</h4>
+            <div class="obj-target">Disarms the price objection before she even formulates it.</div>
+            <p>When she tells you about everything she's tried (diets, books, therapies, etc.), ask:</p>
+            <div class="si">"And all of this you've tried — diets, apps, maybe therapy, coaching... <em>how much would
+                    you say you've invested in total? Over the last 2-3 years?</em>"</div>
+            <p>Let her add it up mentally. Then:</p>
+            <div class="si">"Right. And <em>how much of that actually got you where you wanted to be?</em> ... Exactly.
+                Sometimes it's not about money. It's about <em>investing in the right thing.</em>"</div>
+            <div class="rf"><strong>↳ Effect:</strong> When you reach the $1,200 price, she already knows she's spent
+                more than that on things that didn't work. The right investment already has value in her mind.</div>
+        </div>
+
+        <div class="shield-card">
+            <div class="shield-label">Armor 03 · Discovery phase</div>
+            <h4>⏳ "I need to think about it" / "Let me see"</h4>
+            <div class="obj-target">Disarms procrastination and analysis paralysis.</div>
+            <div class="si">"Hey, <em>how long have you been feeling this way?</em> ... A year, two, more? ... And in
+                all that time, <em>what's changed while you've been thinking about it?</em>"</div>
+            <div class="rf"><strong>↳ Effect:</strong> "Thinking about it" becomes a synonym for "doing nothing." When
+                she says "let me think" at the end, it's already been established that thinking doesn't solve anything.
+            </div>
+        </div>
+
+        <div class="shield-card">
+            <div class="shield-label">Armor 04 · Discovery phase</div>
+            <h4>📅 "It's not a good time" / "Not right now"</h4>
+            <div class="obj-target">Disarms the timing objection.</div>
+            <div class="si">"Tell me — <em>have you ever felt like you were going to start something for yourself and
+                    then postponed it?</em> ... And what happened? ... Exactly. <em>There's never a perfect time.</em>
+                The perfect time is when you decide enough is enough."</div>
+            <div class="rf"><strong>↳ Effect:</strong> She realizes waiting is her pattern. When she says "not now," you
+                can reflect: "Remember what you told me about all the times you put it off?"</div>
+        </div>
+
+        <div class="shield-card">
+            <div class="shield-label">Armor 05 · Personal story phase</div>
+            <h4>🤔 "I don't know if this will work for me"</h4>
+            <div class="obj-target">Disarms distrust in the process.</div>
+            <div class="si">"I also thought nothing would work. I'd tried everything. But the difference was that
+                <em>for the first time, someone saw me as a whole person</em> — not just my diet or just my mind.
+                Everything together. And that's when everything changed."</div>
+            <div class="rf"><strong>↳ Effect:</strong> Your story is your proof. She can't argue against real results
+                you lived. And the holistic approach justifies why nothing before worked.</div>
+        </div>
+
+        <div class="tip-box"><span class="tip-icon">🛡️</span>
+            <p><strong>Armor Rule:</strong> These seeds must feel like a natural part of the conversation, never like a
+                sales technique. Just ask genuine questions. If planted well, by the time you reach the price, she's
+                already shut down her own excuses.</p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════ PRE-CALL ═══════════════ -->
+    <section id="checklist" class="section">
+        <div class="section-label">Before the Call</div>
+        <h2>Pre-Call Checklist</h2>
+        <p>Prepare yourself emotionally and review these points before every call. Remember: you are the living proof
+            that this works.</p>
+        <div class="checklist-card">
+            <h3>✨ Preparation</h3>
+            <div class="checklist-item">
+                <div class="check-icon">✓</div><span>Review the prospect's intake form (if completed)</span>
+            </div>
+            <div class="checklist-item">
+                <div class="check-icon">✓</div><span>Know her name, situation, and what brought her to the call</span>
+            </div>
+            <div class="checklist-item">
+                <div class="check-icon">✓</div><span>Quiet space, no distractions, good lighting</span>
+            </div>
+            <div class="checklist-item">
+                <div class="check-icon">✓</div><span>Have water and a notebook for notes ready</span>
+            </div>
+            <div class="checklist-item">
+                <div class="check-icon">✓</div><span>Have this guide open in another tab as reference</span>
+            </div>
+            <div class="checklist-item">
+                <div class="check-icon">✓</div><span>Remember: you're NOT selling a program → you're offering a
+                    transformation</span>
+            </div>
+        </div>
+        <div class="tip-box"><span class="tip-icon">💡</span>
+            <p><strong>Key tone:</strong> Talk to her like you'd talk to a friend asking for advice. Be warm but direct.
+                Be empathetic but not overly compassionate. Be the mentor you wish you'd had.</p>
+        </div>
+        <div class="checklist-card">
+            <h3>🎯 Closer's Mindset</h3>
+            <div class="checklist-item">
+                <div class="check-icon">✓</div><span>She's on this call because she NEEDS something. You just discover
+                    what it is.</span>
+            </div>
+            <div class="checklist-item">
+                <div class="check-icon">✓</div><span>Don't push. Ask. The right questions make her sell herself.</span>
+            </div>
+            <div class="checklist-item">
+                <div class="check-icon">✓</div><span>You lived this. Your story IS your most powerful social
+                    proof.</span>
+            </div>
+            <div class="checklist-item">
+                <div class="check-icon">✓</div><span>If she's not a fit, let her go with love. Not everyone is your
+                    client.</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════ PHASE 1 ═══════════════ -->
+    <section id="p1" class="section">
+        <div class="phase-block">
+            <div class="phase-number">Phase 01 of 06</div>
+            <h3>Connection & Control</h3>
+            <div class="phase-duration">⏱ First 2-3 minutes</div>
+            <p>The first 7-12 seconds define whether she drops her guard or puts up a wall. <strong>Don't be
+                    hyper-enthusiastic.</strong> Be warm, real, and take control of the structure.</p>
+            <div class="script-box">
+                <strong>Opening Script:</strong><br><br>
+                "Hi [Name], <em>so great to connect with you.</em> Before we start, let me tell you how this call is
+                going to go so you feel comfortable.<br><br>
+                The first part is super simple — <em>I just want to listen to you.</em> Understand where you are in your
+                life, what you're feeling, what brought you here.<br><br>
+                And at the end, if I feel I can help you and you feel this resonates with you, I'll share what working
+                together looks like. <em>Sound good?</em>"
+            </div>
+            <div class="tip-box"><span class="tip-icon">🔑</span>
+                <p><strong>NEPQ Technique:</strong> By asking permission to lead the call ("Sound good?"), she says
+                    "yes" and automatically gives you control. This prevents the conversation from going off on
+                    tangents.</p>
+            </div>
+            <div class="tip-box"><span class="tip-icon">🛡️</span>
+                <p><strong>ARMOR — Immediately after,</strong> insert the decision-maker question: "Hey, and before we
+                    dive in — when you decide something important for yourself, are you the one who makes that
+                    decision?" (See Armor section above).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ PHASE 2 ═══════════════ -->
+    <section id="p2" class="section">
+        <div class="phase-block">
+            <div class="phase-number">Phase 02 of 06</div>
+            <h3>Emotional Discovery</h3>
+            <div class="phase-duration">⏱ 10-15 minutes (the MOST important phase)</div>
+            <p>Here you <strong>just listen.</strong> Ask questions, leave silence, and let her realize the magnitude of
+                her situation. The bigger the gap between "where I am" and "where I want to be," the cheaper the
+                solution feels.</p>
+            <div class="script-box"><strong>Situation Questions:</strong><br><br>"Tell me, <em>what motivated you to be
+                    on this call today?</em>"<br><br>"What are you currently doing to take care of yourself? Whether
+                it's exercise, nutrition, your mental space..."<br><br>"What does a normal day look like for you?"</div>
+            <div class="script-box"><strong>Depth Questions (the pain):</strong><br><br>"<em>How long have you been
+                    feeling this way?</em>"<br><br>"How is this affecting your relationship? Your energy? Your patience
+                with the people you love?"<br><br>"If you asked the [Name] from 5 years ago whether this is the life she
+                dreamed of... <em>what would she say?</em>"</div>
+            <div class="script-box"><strong>Consequence Questions (urgency):</strong><br><br>"And if nothing changes...
+                if you stay the same for the next 6 months... <em>what does your life look like?</em>"<br><br>"<em>How
+                    much is it costing you to stay where you are?</em> Not in money — in your life, your energy, your
+                peace."</div>
+            <div class="tip-box"><span class="tip-icon">⚡</span>
+                <p><strong>Golden rule:</strong> After every deep question, <strong>stay silent</strong>. Don't rescue
+                    the uncomfortable silence. That's where she connects with her pain and her truth.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ PHASE 3 ═══════════════ -->
+    <section id="p3" class="section">
+        <div class="phase-block">
+            <div class="phase-number">Phase 03 of 06</div>
+            <h3>Presenting the Solution</h3>
+            <div class="phase-duration">⏱ 2-3 minutes max</div>
+            <p><strong>Sell the vacation, not the flight.</strong> Don't talk about modules, PDFs, or session hours.
+                Paint the result. Use exactly 3 pillars.</p>
+            <div class="script-box">
+                <strong>Transition to pitch:</strong><br><br>
+                "Listening to you, I realize you need <em>3 things</em> to come back to yourself:<br><br>
+                <strong>1. Nutrition that heals.</strong> Not another diet that stresses you out. But learning how to
+                nourish yourself so your body recovers its energy, your hormones regulate, and you wake up feeling like
+                you.<br><br>
+                <strong>2. Mindset and boundaries.</strong> Working through that guilt you carry. Learning to set
+                boundaries without feeling selfish. Reconnecting with who you are.<br><br>
+                <strong>3. Movement and structure.</strong> Not to look a certain way — but to regulate yourself
+                emotionally. And creating a sustainable life routine.<br><br>
+                That's <em>Return to Her.</em> We meet once a week for 3 months. It's completely personalized. It's not
+                a course — <em>it's you and me, working together.</em>"
+            </div>
+            <div class="tip-box"><span class="tip-icon">🪞</span>
+                <p><strong>Your story is your proof.</strong> At this point, briefly share your experience: "I was
+                    exactly where you are. Seizures, hospital, almost on antidepressants. Until I decided I needed to
+                    change from the root."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ PHASE 4 ═══════════════ -->
+    <section id="p4" class="section">
+        <div class="phase-block">
+            <div class="phase-number">Phase 04 of 06</div>
+            <h3>The Price</h3>
+            <div class="phase-duration">⏱ 30 seconds + silence</div>
+            <p>Say the price once, with confidence, and then <strong>absolute silence.</strong> Don't justify. Don't
+                repeat. Let her process.</p>
+            <div class="script-box"><strong>Price script:</strong><br><br>"The investment for 3 months of Return to Her
+                is <em>$1,200.</em><br><br>I also have the option to split it into 3 payments of $450 per
+                month.<br><br><em>[SILENCE — let her respond first]</em>"</div>
+            <div class="tip-box"><span class="tip-icon">🤫</span>
+                <p><strong>The silence rule:</strong> Whoever speaks first after the price, loses. If you break the
+                    silence, you're communicating insecurity. If she speaks first, she's giving you her real response.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ PHASE 5 ═══════════════ -->
+    <section id="p5" class="section">
+        <div class="section-label">Objection Handling</div>
+        <h2>If Objections Come Up</h2>
+        <p>If you armored well, these will come up with much less force. But if they do, here's how to handle them:</p>
+        <div class="phase-block">
+            <div class="phase-number">Phase 05 of 06</div>
+            <h3>Resolving Objections</h3>
+            <div class="phase-duration">⏱ As needed</div>
+            <div class="objection-card">
+                <div class="objection-label">Objection 01</div>
+                <h4>"I don't have the money" / "It's too much"</h4>
+                <div class="response">"I understand. But earlier you told me about everything you've invested in things
+                    that didn't work. How much of that actually got you where you wanted? Sometimes it's not about money
+                    — it's about investing in the right thing. And you deserve to invest in what actually works."</div>
+            </div>
+            <div class="objection-card">
+                <div class="objection-label">Objection 02</div>
+                <h4>"I need to think about it"</h4>
+                <div class="response">"Of course. But you told me yourself you've been feeling this way for [X time].
+                    And in that time, what changed while you thought about it? Sometimes 'thinking about it' is just
+                    another way of putting it off. Do you feel this is what you need?"</div>
+            </div>
+            <div class="objection-card">
+                <div class="objection-label">Objection 03</div>
+                <h4>"I need to talk to my husband"</h4>
+                <div class="response">"I understand. But at the beginning of the call you told me you're the one who
+                    makes your own decisions. What changed? ... And let me ask you: how does your husband feel seeing
+                    you this exhausted every day? If this gives you back your peace and your health, don't you think
+                    he'd support it?"</div>
+            </div>
+            <div class="objection-card">
+                <div class="objection-label">Objection 04</div>
+                <h4>"It's not a good time"</h4>
+                <div class="response">"You told me earlier that you've postponed this several times already. And what
+                    happened each time? ... The perfect time doesn't exist. The right time is when you decide enough is
+                    enough. Is it enough?"</div>
+            </div>
+            <div class="tip-box"><span class="tip-icon">🎯</span>
+                <p><strong>After resolving the objection, always close with:</strong> "So, shall we start this week or
+                    next?" Don't ask "what do you think?" — that reopens the indecision.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ PHASE 6 ═══════════════ -->
+    <section id="p6" class="section">
+        <div class="phase-block">
+            <div class="phase-number">Phase 06 of 06</div>
+            <h3>The Close</h3>
+            <div class="phase-duration">⏱ 2-3 minutes</div>
+            <p>If she said yes, <strong>act fast.</strong> Don't give her time to second-guess. Confirm, send the
+                payment link, and schedule the first session IMMEDIATELY.</p>
+            <div class="script-box"><strong>Closing script (if she says YES):</strong><br><br>"Amazing! <em>I'm so
+                    excited to do this with you.</em><br><br>Here's what happens now: I'm going to send you the payment
+                link via WhatsApp. As soon as it processes, we'll schedule our first session this same week.<br><br>And
+                I want you to know something — <em>what you just did, saying yes to yourself, is the first step of your
+                    Return to Her.</em> This has already begun."</div>
+            <div class="script-box"><strong>Closing script (if she says NO / not now):</strong><br><br>"I completely
+                understand, and I respect your decision. I just ask one thing: <em>don't stop doing the brain dump we
+                    talked about.</em> Write it all down. And when you're ready, I'll be here.<br><br>I'll send you a
+                message in a week to see how you're doing. Sound good?"</div>
+            <div class="tip-box"><span class="tip-icon">🔥</span>
+                <p><strong>Mandatory follow-up:</strong> If she didn't close on the call, send a value message in 48-72
+                    hours. Don't sell — ask how she is. "Hey [Name], just wanted to check in on how you're doing. I'm
+                    here if you need anything."</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════ TONE GUIDE ═══════════════ -->
+    <section class="section">
+        <div class="section-label">Tone Guide</div>
+        <h2>How to Speak on the Call</h2>
+        <div class="checklist-card">
+            <h3>✅ DO</h3>
+            <div class="checklist-item">
+                <div class="check-icon">✓</div><span><strong>Speak slowly.</strong> Calm, confident tone, like you have
+                    all the time in the world.</span>
+            </div>
+            <div class="checklist-item">
+                <div class="check-icon">✓</div><span><strong>Use her name.</strong> Repeat her name at least 3-4 times
+                    during the call.</span>
+            </div>
+            <div class="checklist-item">
+                <div class="check-icon">✓</div><span><strong>Validate before asking.</strong> "That makes total sense…"
+                    → then ask.</span>
+            </div>
+            <div class="checklist-item">
+                <div class="check-icon">✓</div><span><strong>Share your story.</strong> Not as a monologue — as a
+                    mirror. "I lived exactly that."</span>
+            </div>
+            <div class="checklist-item">
+                <div class="check-icon">✓</div><span><strong>Close with options, not open questions.</strong> "Shall we
+                    start this week or next?"</span>
+            </div>
+        </div>
+        <div class="checklist-card">
+            <h3>❌ DON'T</h3>
+            <div class="checklist-item">
+                <div class="check-icon">✗</div><span>Don't be hyper-enthusiastic or force energy. Be real.</span>
+            </div>
+            <div class="checklist-item">
+                <div class="check-icon">✗</div><span>Don't talk more than her during discovery. Rule: 80% her, 20%
+                    you.</span>
+            </div>
+            <div class="checklist-item">
+                <div class="check-icon">✗</div><span>Don't justify the price. Say it once and be quiet.</span>
+            </div>
+            <div class="checklist-item">
+                <div class="check-icon">✗</div><span>Don't use coaching jargon: "manifest," "align," "high vibes." Talk
+                    normal.</span>
+            </div>
+            <div class="checklist-item">
+                <div class="check-icon">✗</div><span>Don't try to be her therapist. You're her mentor and guide, not her
+                    psychologist.</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="guide-footer">
+        <h2><em>Return to Her</em></h2>
+        <p>Closer's Guide — Internal Document · Johanna Cueva · March 2026</p>
+        <p style="margin-top:8px; color:rgba(255,255,255,.3); font-size:0.65rem;">Sales Velocity System · v3.0</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.nav-pill').forEach(pill => {
+            pill.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+                const t = document.querySelector(this.getAttribute('href'));
+                if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+        const secs = document.querySelectorAll('section[id]');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    document.querySelectorAll('.nav-pill').forEach(p => {
+                        p.classList.remove('active');
+                        if (p.getAttribute('href') === '#' + e.target.id) p.classList.add('active');
+                    });
+                }
+            });
+        }, { rootMargin: '-30% 0px -70% 0px' });
+        secs.forEach(s => obs.observe(s));
+    </script>
+
+</body>
+
+</html>

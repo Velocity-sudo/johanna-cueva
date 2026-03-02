@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return to Her — Closing Deck | Johanna Cueva</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bk: #0a0a0a;
+            --wh: #FFF;
+            --ac: #C8A2D8;
+            --ad: #9B72B0;
+            --ag: linear-gradient(135deg, #C8A2D8, #9B72B0);
+            --f: 'Outfit', sans-serif;
+            --r: 20px
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden
+        }
+
+        body {
+            font-family: var(--f);
+            background: var(--bk);
+            color: var(--wh)
+        }
+
+        /* SLIDE ENGINE */
+        .s {
+            position: fixed;
+            inset: 0;
+            opacity: 0;
+            transform: scale(.97);
+            transition: opacity .5s, transform .5s;
+            pointer-events: none
+        }
+
+        .s.on {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto
+        }
+
+        /* SPLIT LAYOUT — uses all 100vh */
+        .Ls {
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            height: 100vh;
+            padding: 6vh 5vw 8vh
+        }
+
+        .Ls .t {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 3vw;
+            gap: 1.5vh
+        }
+
+        .Ls .v {
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        /* CENTER LAYOUT */
+        .Lc {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 6vh 7vw 8vh;
+            text-align: center
+        }
+
+        /* TYPOGRAPHY — AGGRESSIVE for 2560px */
+        .tag {
+            font-size: 1.1vw;
+            letter-spacing: .35em;
+            text-transform: uppercase;
+            color: var(--ac);
+            font-weight: 500
+        }
+
+        h1 {
+            font-size: 7.5vw;
+            font-weight: 700;
+            letter-spacing: -.04em;
+            line-height: .95
+        }
+
+        h1 em,
+        h2 em {
+            font-style: italic;
+            background: var(--ag);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text
+        }
+
+        h2 {
+            font-size: 4.8vw;
+            font-weight: 600;
+            letter-spacing: -.03em;
+            line-height: 1.05
+        }
+
+        .p {
+            font-size: 1.5vw;
+            font-weight: 300;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .5)
+        }
+
+        .ac {
+            color: var(--ac)
+        }
+
+        .bd {
+            font-weight: 600;
+            color: var(--wh)
+        }
+
+        /* BACKGROUNDS */
+        .b1 {
+            background: linear-gradient(155deg, #15101e, #0a0a0a 60%)
+        }
+
+        .b1::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 20% 40%, rgba(200, 162, 216, .12), transparent 60%);
+            pointer-events: none
+        }
+
+        .b2 {
+            background: var(--bk)
+        }
+
+        .b3 {
+            background: linear-gradient(160deg, #0a0a0a, #1a0e26)
+        }
+
+        /* PHOTO PLACEHOLDER — LARGE */
+        .ph {
+            width: 100%;
+            max-width: 520px;
+            height: 55vh;
+            border: 2px dashed rgba(200, 162, 216, .25);
+            border-radius: var(--r);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(200, 162, 216, .03);
+            gap: 16px;
+            padding: 30px
+        }
+
+        .ph .ic {
+            font-size: 3.5rem;
+            opacity: .5
+        }
+
+        .ph .lb {
+            font-size: .9vw;
+            color: var(--ac);
+            text-transform: uppercase;
+            letter-spacing: .15em;
+            font-weight: 500;
+            text-align: center
+        }
+
+        .ph .nt {
+            font-size: .75vw;
+            color: rgba(255, 255, 255, .25);
+            text-align: center;
+            line-height: 1.6;
+            max-width: 340px
+        }
+
+        /* PILLAR NUMBER */
+        .pn {
+            font-size: 8vw;
+            font-weight: 800;
+            background: var(--ag);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: .9
+        }
+
+        /* FEATURE LIST — larger items, more spacing */
+        .fl {
+            list-style: none;
+            width: 100%
+        }
+
+        .fl li {
+            font-size: 1.45vw;
+            padding: 2vh 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: rgba(255, 255, 255, .7)
+        }
+
+        .fl li .x {
+            color: var(--ac);
+            font-weight: 700;
+            font-size: 1.2em
+        }
+
+        /* PAIN LIST */
+        .pl {
+            list-style: none
+        }
+
+        .pl li {
+            font-size: 1.6vw;
+            padding: 2vh 0;
+            color: rgba(255, 255, 255, .6);
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            border-bottom: 1px solid rgba(255, 255, 255, .04)
+        }
+
+        .pl li:last-child {
+            color: var(--ac);
+            font-weight: 500
+        }
+
+        /* COMPARE GRID */
+        .cg {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3vw;
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 4vh
+        }
+
+        .cc {
+            text-align: left;
+            padding: 3vh 2.5vw;
+            border-radius: var(--r)
+        }
+
+        .cc.bad {
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .06)
+        }
+
+        .cc.gd {
+            background: rgba(200, 162, 216, .07);
+            border: 1px solid rgba(200, 162, 216, .18)
+        }
+
+        .cc h3 {
+            font-size: .75vw;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            margin-bottom: 1.8vh;
+            font-weight: 500
+        }
+
+        .cc.bad h3 {
+            color: rgba(255, 255, 255, .3)
+        }
+
+        .cc.gd h3 {
+            color: var(--ac)
+        }
+
+        .ci {
+            font-size: 1vw;
+            padding: .9vh 0;
+            color: rgba(255, 255, 255, .5);
+            display: flex;
+            gap: 10px;
+            line-height: 1.45
+        }
+
+        .cc.gd .ci {
+            color: rgba(255, 255, 255, .8)
+        }
+
+        /* INCLUDES LIST */
+        .il {
+            list-style: none;
+            width: 100%
+        }
+
+        .il li {
+            font-size: 1.45vw;
+            padding: 2.2vh 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+            display: flex;
+            gap: 16px;
+            color: rgba(255, 255, 255, .7)
+        }
+
+        .il li .x {
+            color: var(--ac);
+            font-weight: 700
+        }
+
+        /* PRICE */
+        .pr {
+            font-size: 10vw;
+            font-weight: 800;
+            background: var(--ag);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1
+        }
+
+        .ps {
+            font-size: 1.2vw;
+            color: rgba(255, 255, 255, .3);
+            margin-top: 2vh
+        }
+
+        .pp {
+            margin-top: 3vh;
+            padding: 18px 50px;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 100px;
+            display: inline-block;
+            font-size: 1.2vw
+        }
+
+        .pp strong {
+            color: var(--wh)
+        }
+
+        .pp span {
+            color: rgba(255, 255, 255, .4)
+        }
+
+        /* QUOTE */
+        .qt {
+            max-width: 850px;
+            position: relative;
+            padding: 60px
+        }
+
+        .qt::before {
+            content: '"';
+            font-size: 12rem;
+            color: var(--ac);
+            opacity: .2;
+            position: absolute;
+            top: -50px;
+            left: 5px;
+            font-family: serif;
+            line-height: 1
+        }
+
+        .qt-t {
+            font-size: 3vw;
+            font-weight: 300;
+            line-height: 1.5;
+            font-style: italic;
+            color: rgba(255, 255, 255, .85)
+        }
+
+        .qt-a {
+            margin-top: 32px;
+            font-size: .95vw;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--ac);
+            font-weight: 500
+        }
+
+        /* COST BLOCK */
+        .cb {
+            max-width: 850px
+        }
+
+        .cb .ln {
+            font-size: 3vw;
+            font-weight: 300;
+            line-height: 1.55;
+            color: rgba(255, 255, 255, .7);
+            margin-bottom: 2.5vh
+        }
+
+        .cb .hl {
+            color: var(--ac);
+            font-weight: 500
+        }
+
+        .cb .sm {
+            font-size: 1.5vw;
+            color: rgba(255, 255, 255, .3);
+            margin-top: 2.5vh
+        }
+
+        /* CTA */
+        .ct {
+            display: inline-block;
+            padding: 24px 60px;
+            border: 1px solid var(--ac);
+            border-radius: 100px;
+            font-size: 1.05vw;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--ac);
+            font-weight: 500;
+            text-decoration: none;
+            transition: all .3s
+        }
+
+        .ct:hover {
+            background: var(--ac);
+            color: var(--bk)
+        }
+
+        /* CONTROLS */
+        .ctrl {
+            position: fixed;
+            bottom: 32px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 28px;
+            z-index: 100
+        }
+
+        .btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: rgba(0, 0, 0, .8);
+            backdrop-filter: blur(12px);
+            color: #fff;
+            font-size: 1.15rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .3s
+        }
+
+        .btn:hover {
+            background: var(--ad);
+            border-color: var(--ac)
+        }
+
+        .cn {
+            font-size: .8vw;
+            letter-spacing: .25em;
+            color: rgba(255, 255, 255, .2);
+            min-width: 70px;
+            text-align: center
+        }
+
+        .pb {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--ag);
+            transition: width .4s;
+            z-index: 200
+        }
+
+        @media(max-width:1024px) {
+            .Ls {
+                grid-template-columns: 1fr;
+                padding: 5vh 6vw 12vh;
+                gap: 3vh
+            }
+
+            .Ls .t {
+                padding-right: 0
+            }
+
+            .ph {
+                max-width: 300px;
+                height: 35vh
+            }
+
+            .cg {
+                grid-template-columns: 1fr
+            }
+
+            h1 {
+                font-size: 12vw
+            }
+
+            h2 {
+                font-size: 7vw
+            }
+
+            .p,
+            .fl li,
+            .il li,
+            .pl li {
+                font-size: 3.5vw
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="pb" id="pb"></div>
+
+    <!-- ══════ 1: COVER ══════ -->
+    <div class="s b1 Ls on">
+        <div class="t">
+            <div class="tag">Women's Wellness Mentorship · 3 Months</div>
+            <h1><em>Return<br>to Her</em></h1>
+            <p class="p">A safe space to come back to yourself.<br>Nutrition, mindset, movement, and structure — fully
+                personalized to your life.</p>
+            <p class="p" style="font-size:.95vw;letter-spacing:.2em;text-transform:uppercase;color:var(--ac)">by Johanna
+                Cueva</p>
+        </div>
+        <div class="v">
+            <div class="ph">
+                <div class="ic">📸</div>
+                <div class="lb">Professional photo of Johanna</div>
+                <div class="nt">Portrait with natural background, relaxed and confident look. Convey peace and strength.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════ 2: THE PROBLEM ══════ -->
+    <div class="s b2 Ls">
+        <div class="t">
+            <div class="tag">The Reality</div>
+            <h2>Does this sound<br>like you?</h2>
+            <ul class="pl">
+                <li><span>😴</span> You wake up exhausted even after a full night's sleep.</li>
+                <li><span>🏋️‍♀️</span> You carry the weight of the world on your shoulders — alone.</li>
+                <li><span>💔</span> Everyone comes first. You always end up last.</li>
+                <li><span>🔄</span> You've tried diets, apps, therapy — nothing sticks.</li>
+                <li><span>🪞</span> You look in the mirror and don't recognize who's looking back.</li>
+                <li><span class="ac bd">😶</span> <span class="ac bd">You've stopped dreaming for yourself.</span></li>
+            </ul>
+        </div>
+        <div class="v">
+            <div class="ph">
+                <div class="ic">🖼️</div>
+                <div class="lb">Emotional / artistic image</div>
+                <div class="nt">Woman looking out window, or sitting alone in soft light. Introspection and longing.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════ 3: THE COST ══════ -->
+    <div class="s b3 Lc">
+        <div class="tag">The Cost of Staying the Same</div>
+        <div class="cb" style="margin-top:5vh">
+            <div class="ln">What happens if <span class="hl">6 months from now</span>,<br>nothing has changed?</div>
+            <div class="ln">Your health? Your energy?<br>Your relationship <span class="hl">with yourself?</span></div>
+            <div class="sm">Every day that passes is another day carrying<br>a weight that was never yours to carry.
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════ 4: MY STORY ══════ -->
+    <div class="s b3 Ls">
+        <div class="t">
+            <div class="tag">My Story</div>
+            <h2>I was exactly<br>where you are.</h2>
+            <p class="p">Seizures. Hospital. On the verge of antidepressants. Trying to hold my family together while
+                falling apart myself.</p>
+            <p class="p">Until I decided I needed to change <span class="ac bd">from the root</span>. Not a bandaid. Not
+                a temporary fix. A real, deep transformation.</p>
+            <p class="p" style="color:var(--ac);font-weight:500">Today I live with peace, health, and purpose.<br>And I
+                want to guide you to that same place.</p>
+        </div>
+        <div class="v">
+            <div class="ph">
+                <div class="ic">✨</div>
+                <div class="lb">Johanna's "before & after"</div>
+                <div class="nt">Collage or radiant current photo vs. an older photo. Show the real transformation.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════ 5: PILLAR 1 ══════ -->
+    <div class="s b1 Ls">
+        <div class="t">
+            <div class="tag">Pillar 01 of 03</div>
+            <div class="pn">01</div>
+            <h2>Nutrition that <em>Heals</em></h2>
+            <p class="p">Not another diet. Learn how to nourish your body so it regulates from within.</p>
+            <ul class="fl">
+                <li><span class="x">→</span> Personalized meal plan adapted to your hormonal cycle</li>
+                <li><span class="x">→</span> Energy regulation without extreme restrictions</li>
+                <li><span class="x">→</span> Understanding the food → emotions → body connection</li>
+                <li><span class="x">→</span> Practical recipes and weekly guides for your real life</li>
+                <li><span class="x">→</span> Supplement & hydration framework for sustained energy</li>
+            </ul>
+        </div>
+        <div class="v">
+            <div class="ph">
+                <div class="ic">🥗</div>
+                <div class="lb">Johanna cooking or with healthy food</div>
+                <div class="nt">Bright, natural image with real food (no stock). Warmth and authenticity.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════ 6: PILLAR 2 ══════ -->
+    <div class="s b1 Ls">
+        <div class="t">
+            <div class="tag">Pillar 02 of 03</div>
+            <div class="pn">02</div>
+            <h2>Mindset &<br><em>Boundaries</em></h2>
+            <p class="p">Release the guilt of prioritizing yourself. Set boundaries with love. Rediscover who you are
+                beyond your roles.</p>
+            <ul class="fl">
+                <li><span class="x">→</span> Guided journaling and self-discovery exercises</li>
+                <li><span class="x">→</span> Emotional regulation & nervous system techniques</li>
+                <li><span class="x">→</span> Setting boundaries without guilt or feeling selfish</li>
+                <li><span class="x">→</span> Reconnecting with your dreams and core identity</li>
+                <li><span class="x">→</span> Breaking recurring thought patterns that keep you stuck</li>
+            </ul>
+        </div>
+        <div class="v">
+            <div class="ph">
+                <div class="ic">🧘‍♀️</div>
+                <div class="lb">Johanna meditating or journaling</div>
+                <div class="nt">A moment of calm. Peaceful space, natural light, intentional posture.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════ 7: PILLAR 3 ══════ -->
+    <div class="s b1 Ls">
+        <div class="t">
+            <div class="tag">Pillar 03 of 03</div>
+            <div class="pn">03</div>
+            <h2>Movement &<br><em>Structure</em></h2>
+            <p class="p">Move your body not to look a certain way — but to regulate yourself emotionally and feel alive
+                again.</p>
+            <ul class="fl">
+                <li><span class="x">→</span> Movement routine adapted to your fitness level</li>
+                <li><span class="x">→</span> Sustainable daily organization & time-blocking system</li>
+                <li><span class="x">→</span> Structure that fits your life, not the other way around</li>
+                <li><span class="x">→</span> Tools to maintain habits and momentum long-term</li>
+                <li><span class="x">→</span> Weekly accountability check-ins to stay on track</li>
+            </ul>
+        </div>
+        <div class="v">
+            <div class="ph">
+                <div class="ic">💃</div>
+                <div class="lb">Johanna exercising or dancing</div>
+                <div class="nt">Joyful movement — yoga, dancing, outdoor walk. Positive energy.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════ 8: BEFORE vs AFTER ══════ -->
+    <div class="s b2 Lc">
+        <div class="tag">The Transformation</div>
+        <h2 style="margin-top:1vh;font-size:3.2vw">Without mentorship vs.<br>With <em>Return to Her</em></h2>
+        <div class="cg" style="margin-top:2vh">
+            <div class="cc bad">
+                <h3>❌ Without mentorship</h3>
+                <div class="ci">😴 Chronic fatigue with no explanation</div>
+                <div class="ci">😶 Suppressing what you feel every day</div>
+                <div class="ci">🔄 Same destructive patterns on repeat</div>
+                <div class="ci">😰 No boundaries — everyone takes from you</div>
+                <div class="ci">💭 No dreams or goals of your own</div>
+                <div class="ci">🪞 Looking in the mirror and feeling nothing</div>
+            </div>
+            <div class="cc gd">
+                <h3>✨ With Return to Her</h3>
+                <div class="ci">⚡ Balanced energy and regulated hormones</div>
+                <div class="ci">💜 Speaking your truth with confidence</div>
+                <div class="ci">🌱 Breaking cycles at the root — not surface</div>
+                <div class="ci">🛡️ Boundaries with love, clarity and firmness</div>
+                <div class="ci">✨ Dreaming again — and taking action</div>
+                <div class="ci">🤍 Peace when you look at your own reflection</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════ 9: WHAT'S INCLUDED ══════ -->
+    <div class="s b2 Ls">
+        <div class="t">
+            <div class="tag">What's Included</div>
+            <h2>Your personalized<br>program</h2>
+            <ul class="il">
+                <li><span class="x">→</span> 12 one-on-one sessions with Johanna (weekly, 60 min)</li>
+                <li><span class="x">→</span> 100% personalized plan — nutrition, mindset, movement</li>
+                <li><span class="x">→</span> Support & feedback between sessions via WhatsApp</li>
+                <li><span class="x">→</span> Custom nutrition guide adapted to your hormones</li>
+                <li><span class="x">→</span> Mindset toolkit: journaling prompts, exercises, frameworks</li>
+                <li><span class="x">→</span> Sustainable daily organization system & habit tracker</li>
+            </ul>
+        </div>
+        <div class="v">
+            <div class="ph">
+                <div class="ic">💻</div>
+                <div class="lb">Screenshot of a 1-on-1 session</div>
+                <div class="nt">Capture of a video call with a client (with permission) or mockup showing the session
+                    experience.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════ 10: PRICING ══════ -->
+    <div class="s b1 Lc">
+        <div class="tag">Your Investment</div>
+        <h2 style="margin-top:2vh">3 months of transformation</h2>
+        <div class="pr">$1,200</div>
+        <div class="ps">One-time payment · 3 months of personalized mentorship</div>
+        <div class="pp"><span>Payment plan: </span><strong>$450/mo × 3 months</strong></div>
+        <p class="p" style="margin-top:4vh;max-width:650px">This isn't an expense. It's an investment in your health,
+            your peace of mind, and the woman you're becoming.</p>
+    </div>
+
+    <!-- ══════ 11: QUOTE ══════ -->
+    <div class="s b2 Lc">
+        <div class="qt">
+            <div class="qt-t">"What you just did — saying yes to yourself — is the first step of your Return to Her."
+            </div>
+            <div class="qt-a">Johanna Cueva</div>
+        </div>
+    </div>
+
+    <!-- ══════ 12: CTA ══════ -->
+    <div class="s b1 Ls">
+        <div class="t">
+            <div class="tag">The Next Step</div>
+            <h1><em>Shall we<br>begin?</em></h1>
+            <p class="p">You don't need to have all the answers.<br>You just need to take the first step. I'll take care
+                of the rest.</p>
+            <a class="ct" href="#">Book your session now</a>
+            <p class="p" style="margin-top:3vh;font-size:.85vw;color:rgba(255,255,255,.2)">@johannnacueva ·
+                morethansalsa.co</p>
+        </div>
+        <div class="v">
+            <div class="ph">
+                <div class="ic">🤝</div>
+                <div class="lb">Johanna smiling, arms open</div>
+                <div class="nt">Warm, inviting photo. Open posture. Trust and welcome.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTROLS -->
+    <div class="ctrl">
+        <button class="btn" onclick="go(-1)">←</button>
+        <span class="cn" id="cn">1 / 12</span>
+        <button class="btn" onclick="go(1)">→</button>
+    </div>
+
+    <script>
+        let c = 0; const s = document.querySelectorAll('.s'), n = s.length;
+        function show(i) { s.forEach((x, j) => x.classList.toggle('on', j === i)); document.getElementById('cn').textContent = (i + 1) + ' / ' + n; document.getElementById('pb').style.width = ((i + 1) / n * 100) + '%'; }
+        function go(d) { c = Math.max(0, Math.min(n - 1, c + d)); show(c); }
+        document.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(1); } if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); } });
+        let tx = 0; document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }); document.addEventListener('touchend', e => { const d = tx - e.changedTouches[0].clientX; if (Math.abs(d) > 50) go(d > 0 ? 1 : -1); });
+        show(0);
+    </script>
+</body>
+
+</html>
