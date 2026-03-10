@@ -44,7 +44,9 @@
             opacity: 0;
             transform: scale(.97);
             transition: opacity .5s, transform .5s;
-            pointer-events: none
+            pointer-events: none;
+            overflow-y: auto;
+            overflow-x: hidden
         }
 
         .s.on {
@@ -57,8 +59,8 @@
         .Ls {
             display: grid;
             grid-template-columns: 1.15fr .85fr;
-            height: 100vh;
-            padding: 6vh 5vw 8vh
+            min-height: 100vh;
+            padding: 5vh 5vw 12vh
         }
 
         .Ls .t {
@@ -81,8 +83,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            padding: 6vh 7vw 8vh;
+            min-height: 100vh;
+            padding: 5vh 7vw 12vh;
             text-align: center
         }
 
@@ -96,7 +98,7 @@
         }
 
         h1 {
-            font-size: 7.5vw;
+            font-size: 6vw;
             font-weight: 700;
             letter-spacing: -.04em;
             line-height: .95
@@ -112,7 +114,7 @@
         }
 
         h2 {
-            font-size: 4.8vw;
+            font-size: 4vw;
             font-weight: 600;
             letter-spacing: -.03em;
             line-height: 1.05
@@ -690,19 +692,25 @@
         </div>
     </div>
 
-    <!-- ══════ 12: CTA ══════ -->
+    <!-- ══════ 12: NEXT STEPS ══════ -->
     <div class="s b1 Ls">
         <div class="t">
-            <div class="tag">The Next Step</div>
-            <h1><em>Shall we<br>begin?</em></h1>
-            <p class="p">You don't need to have all the answers.<br>You just need to take the first step. I'll take care
-                of the rest.</p>
-            <a class="ct" href="#">Book your session now</a>
-            <p class="p" style="margin-top:3vh;font-size:.85vw;color:rgba(255,255,255,.2)">@johannnacueva ·
-                morethansalsa.co</p>
+            <div class="tag">Next Steps</div>
+            <h2>Ready to start your<br><em>transformation?</em></h2>
+            <p class="p" style="margin-top:1vh">Here's how to begin:</p>
+            <ul class="il" style="margin-top:1vh">
+                <li><span class="x">1</span> Choose your payment option below</li>
+                <li><span class="x">2</span> You'll receive your welcome kit via WhatsApp</li>
+                <li><span class="x">3</span> We schedule your first session this week</li>
+            </ul>
+            <div style="margin-top:3vh;display:flex;gap:2vw;align-items:center;flex-wrap:wrap">
+                <div class="pp"><strong>$1,200</strong> <span>one-time</span></div>
+                <div class="pp"><strong>$450/mo</strong> <span>× 3 months</span></div>
+            </div>
+            <p class="p" style="margin-top:3vh;font-size:.85vw;color:rgba(255,255,255,.25)">@johannnacueva</p>
         </div>
         <div class="v">
-            <img class="si" src="img/cta.png" alt="Shall we begin — welcome">
+            <img class="si" src="img/cta.png" alt="Next Steps — begin your transformation">
         </div>
     </div>
 
